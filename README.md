@@ -4,6 +4,12 @@ This branch starts the data-expansion phase while preserving the original Candid
 
 Read [the 1.3 data expansion plan](docs/V1.3_DATA_EXPANSION.md) before adding examples.
 
+Audit the pinned upstream dataset first (Kaggle CPU; downloads the dataset):
+
+\`\`\`bash
+python tools/audit_v13_dataset.py --revision v1.5
+\`\`\`
+
 Validate only human-reviewed supplemental JSONL:
 
 ```bash
