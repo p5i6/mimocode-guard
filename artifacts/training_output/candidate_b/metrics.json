@@ -1,0 +1,191 @@
+{
+  "candidate": "B",
+  "model_type": "token_cnn",
+  "training_seconds": 323.60367727279663,
+  "best_epoch": 4,
+  "best_validation_macro_f1": 0.5392002280681636,
+  "onnx_export": "success_verified_cpu",
+  "deploy_package_bytes": 1443179,
+  "deploy_package_mb": 1.3763227462768555,
+  "under_10mb": true,
+  "validation": {
+    "accuracy": 0.6385262547142443,
+    "macro_f1": 0.5392002280681636,
+    "per_class": {
+      "safe": {
+        "precision": 0.7970859985785359,
+        "recall": 0.8758297540023429,
+        "f1": 0.8346046511627907,
+        "support": 5122
+      },
+      "low": {
+        "precision": 0.6666666666666666,
+        "recall": 0.41067961165048544,
+        "f1": 0.5082607389606488,
+        "support": 2060
+      },
+      "moderate": {
+        "precision": 0.11655011655011654,
+        "recall": 0.2812939521800281,
+        "f1": 0.16481252575195715,
+        "support": 711
+      },
+      "high": {
+        "precision": 0.38872832369942195,
+        "recall": 0.713527851458886,
+        "f1": 0.5032740879326474,
+        "support": 2639
+      },
+      "critical": {
+        "precision": 0.9502382212811011,
+        "recall": 0.5355810830971207,
+        "f1": 0.6850491365327736,
+        "support": 6703
+      }
+    },
+    "confusion_matrix_label_order": [
+      "safe",
+      "low",
+      "moderate",
+      "high",
+      "critical"
+    ],
+    "confusion_matrix": [
+      [
+        4486,
+        8,
+        370,
+        253,
+        5
+      ],
+      [
+        362,
+        846,
+        269,
+        501,
+        82
+      ],
+      [
+        34,
+        50,
+        200,
+        349,
+        78
+      ],
+      [
+        157,
+        337,
+        239,
+        1883,
+        23
+      ],
+      [
+        589,
+        28,
+        638,
+        1858,
+        3590
+      ]
+    ],
+    "critical_recall_argmax": 0.5355810830971207,
+    "high_critical_recall_thresholded": 0.7914793406122886,
+    "safe_false_positive_rate_thresholded": 0.04959000390472472,
+    "safe_false_positive_rate_argmax": 0.12417024599765716,
+    "threshold": {
+      "high_critical_threshold": 0.4799408055841923,
+      "validation_high_critical_recall_at_threshold": 0.7914793406122886,
+      "validation_safe_fpr_at_threshold": 0.04959000390472472,
+      "target_safe_fpr": 0.05
+    }
+  },
+  "test": {
+    "accuracy": 0.5930985414443258,
+    "macro_f1": 0.4944845689471443,
+    "per_class": {
+      "safe": {
+        "precision": 0.7565331010452961,
+        "recall": 0.7301387137452712,
+        "f1": 0.7431016042780748,
+        "support": 4758
+      },
+      "low": {
+        "precision": 0.3070539419087137,
+        "recall": 0.037601626016260166,
+        "f1": 0.06699864191942055,
+        "support": 1968
+      },
+      "moderate": {
+        "precision": 0.3497431506849315,
+        "recall": 0.6882898062342039,
+        "f1": 0.46380925347715013,
+        "support": 1187
+      },
+      "high": {
+        "precision": 0.3878706199460916,
+        "recall": 0.6523118766999093,
+        "f1": 0.48647734956051386,
+        "support": 2206
+      },
+      "critical": {
+        "precision": 0.7972292191435768,
+        "recall": 0.6432926829268293,
+        "f1": 0.7120359955005624,
+        "support": 3936
+      }
+    },
+    "confusion_matrix_label_order": [
+      "safe",
+      "low",
+      "moderate",
+      "high",
+      "critical"
+    ],
+    "confusion_matrix": [
+      [
+        3474,
+        10,
+        653,
+        367,
+        254
+      ],
+      [
+        546,
+        74,
+        55,
+        1062,
+        231
+      ],
+      [
+        43,
+        86,
+        817,
+        240,
+        1
+      ],
+      [
+        32,
+        48,
+        529,
+        1439,
+        158
+      ],
+      [
+        497,
+        23,
+        282,
+        602,
+        2532
+      ]
+    ],
+    "critical_recall_argmax": 0.6432926829268293,
+    "high_critical_recall_thresholded": 0.7725496580918267,
+    "safe_false_positive_rate_thresholded": 0.1307271963009668,
+    "safe_false_positive_rate_argmax": 0.2698612862547289,
+    "threshold": {
+      "high_critical_threshold": 0.4799408055841923,
+      "validation_high_critical_recall_at_threshold": 0.7914793406122886,
+      "validation_safe_fpr_at_threshold": 0.04959000390472472,
+      "target_safe_fpr": 0.05
+    }
+  }
+}
