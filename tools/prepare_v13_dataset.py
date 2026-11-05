@@ -37,7 +37,10 @@ def main():
         for row in ds[split]:
             frozen_families.add(family(row))
             frozen_commands.add((" ".join(str(row["command"]).split()),str(row["shell"]).lower()))
-    for row in ds["train"]:\n        fam=family(row); train_families.add(fam); train_family_labels[fam].add(str(row["risk_level"]))
+    for row in ds["train"]:
+        fam=family(row)
+        train_families.add(fam)
+        train_family_labels[fam].add(str(row["risk_level"]))
     for i,row in enumerate(rows,1):
         fam=row["family_id"]
         if fam in frozen_families:
@@ -45,9 +48,8 @@ def main():
         cmd=(" ".join(row["command"].split()),row["shell"].lower())
         if cmd in frozen_commands:
             raise RuntimeError(f"supplement row {i} command overlaps frozen validation/test")
-        if fam not in train_families and fam.startswith(("hybrid:","generated:")):
-            # A genuinely new family is permitted, but it remains train-only.
-            pass
+        if fam in train_family_labels and row["risk_level"] not in train_family_labels[fam]:
+            raise RuntimeError(f"supplement row {i} label conflicts with existing train family {fam}")
     additions=[]
     for row in rows:
         src=row["source"]; shell=row["shell"]; cmd=row["command"]
