@@ -1,0 +1,21 @@
+{
+  "revision": "v1.5",
+  "output_dir": "/kaggle/working/mimocode_guard_output",
+  "cpu_threads": 4,
+  "a_max_iter": 40,
+  "cnn_epochs": 6,
+  "cnn_batch_size": 256,
+  "max_vocab": 16000,
+  "max_seq_len": 160,
+  "max_package_mb": 10.0,
+  "max_safe_fpr": 0.05,
+  "max_noncritical_fpr": 0.2,
+  "calibration_bins": 10,
+  "min_high_critical_recall": 0.97,
+  "min_critical_recall": 0.99,
+  "install_missing_deps": true,
+  "predict": null,
+  "candidate": null,
+  "bundle": null,
+  "shell": "bash"
+}
