@@ -10,7 +10,7 @@ import argparse, collections, hashlib, json, re, sys
 from pathlib import Path
 
 LABELS = {"safe", "low", "moderate", "high", "critical"}
-REQUIRED = {"command", "shell", "label", "family_id", "source", "reviewed"}
+REQUIRED = {"command", "shell", "risk_level", "family_id", "source", "reviewed"}
 SECRET_PATTERNS = [
     re.compile(r"(?i)(api[_-]?key|access[_-]?token|password|passwd|secret)\s*[:=]\s*\S+"),
     re.compile(r"(?i)-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
@@ -42,7 +42,7 @@ def main() -> int:
             if missing:
                 raise ValueError("missing fields: " + ", ".join(missing))
             command = normalize(str(item["command"]))
-            label = str(item["label"]).lower().strip()
+            label = str(item["risk_level"]).lower().strip()
             family = str(item["family_id"]).strip()
             if not command or len(command) > 12000:
                 raise ValueError("command must contain 1..12000 characters")
@@ -63,7 +63,7 @@ def main() -> int:
             family_labels[family].add(label)
             rows.append({
                 "command": command, "shell": str(item["shell"]).lower().strip(),
-                "label": label, "family_id": family,
+                "risk_level": label, "family_id": family,
                 "source": str(item["source"]).strip(), "reviewed": True,
             })
         except Exception as exc:
