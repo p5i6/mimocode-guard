@@ -1,0 +1,155 @@
+{
+  "source": "Candidate A base classifier + dedicated Critical detector",
+  "note": "Validation examples are diagnostics; test examples are report-only and were not used for threshold selection.",
+  "by_split": {
+    "validation": {
+      "rows": 17235,
+      "true_critical": 6703,
+      "critical_predicted_safe_by_base": 491,
+      "critical_predicted_high_by_base": 2465,
+      "critical_missed_by_specialist": 162,
+      "noncritical_flagged_by_specialist": 2104,
+      "safe_rows_flagged_by_specialist": 43,
+      "safe_false_positive_by_base": 62
+    },
+    "test": {
+      "rows": 14055,
+      "true_critical": 3936,
+      "critical_predicted_safe_by_base": 412,
+      "critical_predicted_high_by_base": 975,
+      "critical_missed_by_specialist": 20,
+      "noncritical_flagged_by_specialist": 3052,
+      "safe_rows_flagged_by_specialist": 834,
+      "safe_false_positive_by_base": 1060
+    }
+  },
+  "artifact_counts": {
+    "critical_false_safe": 903,
+    "critical_false_high": 3440,
+    "safe_false_positive": 1738,
+    "critical_detector_misses": 182,
+    "critical_detector_false_positives": 5156
+  },
+  "top_tokens_in_critical_false_safe": [
+    {
+      "token": "wipefs",
+      "count": 451
+    },
+    {
+      "token": "sudo",
+      "count": 247
+    },
+    {
+      "token": "mkfs.ext4",
+      "count": 187
+    },
+    {
+      "token": "flashrom",
+      "count": 184
+    },
+    {
+      "token": "p",
+      "count": 184
+    },
+    {
+      "token": "nohup",
+      "count": 176
+    },
+    {
+      "token": "o",
+      "count": 155
+    },
+    {
+      "token": "time",
+      "count": 152
+    },
+    {
+      "token": "af",
+      "count": 142
+    },
+    {
+      "token": "env",
+      "count": 109
+    },
+    {
+      "token": "w",
+      "count": 104
+    },
+    {
+      "token": "a",
+      "count": 100
+    },
+    {
+      "token": "/dev/nvme0n1p1",
+      "count": 93
+    },
+    {
+      "token": "/dev/sda",
+      "count": 90
+    },
+    {
+      "token": "/dev/sdb",
+      "count": 85
+    },
+    {
+      "token": "dev",
+      "count": 80
+    },
+    {
+      "token": "/dev/sda1",
+      "count": 72
+    },
+    {
+      "token": "/dev/vda",
+      "count": 70
+    },
+    {
+      "token": "all",
+      "count": 64
+    },
+    {
+      "token": "/dev/nvme0n1",
+      "count": 64
+    },
+    {
+      "token": "/dev/disk0",
+      "count": 53
+    },
+    {
+      "token": "mkfs.xfs",
+      "count": 43
+    },
+    {
+      "token": "linux_spi",
+      "count": 40
+    },
+    {
+      "token": "/dev/spidev0",
+      "count": 40
+    },
+    {
+      "token": "e",
+      "count": 40
+    },
+    {
+      "token": "dediprog",
+      "count": 40
+    },
+    {
+      "token": "ft2232_spi",
+      "count": 40
+    },
+    {
+      "token": "buspirate_spi",
+      "count": 40
+    },
+    {
+      "token": "/dev/ttyusb0",
+      "count": 40
+    },
+    {
+      "token": "erase",
+      "count": 40
+    }
+  ]
+}
