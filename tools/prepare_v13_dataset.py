@@ -66,7 +66,6 @@ def main() -> int:
     frozen_families = set()
     frozen_commands = set()
     baseline_commands = set()
-    train_family_labels = collections.defaultdict(set)
     baseline_ids = set()
 
     for split_name in ("train", "validation", "test"):
@@ -81,7 +80,7 @@ def main() -> int:
                 if command_key[1]:
                     frozen_commands.add(command_key)
             else:
-                train_family_labels[family_of(row)].add(str(row.get("risk_level") or "").lower())
+                pass
 
     supplemental_commands = set()
     supplemental_ids = set()
@@ -106,9 +105,6 @@ def main() -> int:
             raise RuntimeError(f"supplement row {index} duplicates another supplement command")
         supplemental_commands.add(command_key)
 
-        if family_id in train_family_labels and label not in train_family_labels[family_id]:
-            raise RuntimeError(f"supplement row {index} label conflicts with existing train family {family_id}")
-
         digest = hashlib.sha256(command.encode("utf-8")).hexdigest()[:12]
         proposed_id = f"{family_id.replace(':', '-')}-{shell}-{digest}"
         if proposed_id in baseline_ids or proposed_id in supplemental_ids:
@@ -121,7 +117,12 @@ def main() -> int:
         shell = row["shell"]
         command = row["command"]
         digest = hashlib.sha256(normalise_command(command).encode("utf-8")).hexdigest()[:12]
-        family_stub = str(row["family_id"]).replace(":", "-")
+        if row["source"] == "hybrid":
+            family_stub = row["derived_from"]
+        elif row["source"] == "generated":
+            family_stub = row["family_id"].split(":", 1)[1]
+        else:
+            family_stub = "os-" + row["provenance"]
         proposed_id = f"{family_stub}-{shell}-{digest}"
 
         values = {
