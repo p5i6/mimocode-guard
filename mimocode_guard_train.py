@@ -1,21 +1,42 @@
 #!/usr/bin/env python3
-"""MiMoCode Guard 1.1 launcher.
+"""MiMoCode Guard 1.1 single-file launcher.
 
-The training implementation is embedded as a gzip-compressed payload.
-On first run this single download extracts the implementation beside it
-and executes it.
+Downloads the pinned compressed trainer payload from this repository, verifies
+its SHA-256, extracts a readable implementation beside this file, and runs it.
+Requires network access on first launch; all model work remains CPU-only.
 """
+from __future__ import annotations
+
 import base64
 import gzip
+import hashlib
 import runpy
+import urllib.request
 from pathlib import Path
 
-_PAYLOAD = r"""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"""
-def main():
-    source = gzip.decompress(base64.b64decode(_PAYLOAD))
+BASE_URL = "https://raw.githubusercontent.com/p5i6/mimocode-guard/main/payload/"
+PARTS = ("part-01.txt", "part-02.txt", "part-03.txt", "part-04.txt", "part-05.txt")
+EXPECTED_SHA256 = "b4c48906ecff6d00f91fc4b8f344c2ac508b589989568b976b0ebc69f3b2af9d"
+
+
+def main() -> None:
+    encoded_parts = []
+    for name in PARTS:
+        request = urllib.request.Request(BASE_URL + name, headers={"User-Agent": "MiMoCode-Guard/1.1"})
+        with urllib.request.urlopen(request, timeout=60) as response:
+            encoded_parts.append(response.read().decode("ascii").strip())
+    source = gzip.decompress(base64.b64decode("".join(encoded_parts), validate=True))
+    actual_sha256 = hashlib.sha256(source).hexdigest()
+    if actual_sha256 != EXPECTED_SHA256:
+        raise RuntimeError(
+            f"Trainer integrity check failed: expected {EXPECTED_SHA256}, got {actual_sha256}"
+        )
+
     implementation = Path(__file__).resolve().with_name("_mimocode_guard_train_impl.py")
     implementation.write_bytes(source)
+    print(f"[MiMoCode Guard] Verified trainer SHA-256: {actual_sha256}", flush=True)
     runpy.run_path(str(implementation), run_name="__main__")
+
 
 if __name__ == "__main__":
     main()
