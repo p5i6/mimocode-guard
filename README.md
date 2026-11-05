@@ -1,21 +1,47 @@
 # MiMoCode Guard 1.3 — Data Expansion
 
-This branch starts the data-expansion phase while preserving the original Candidate A baseline. Candidate B is retained for comparison; TinyBrainBot is excluded.
+This branch keeps Candidate A as the primary baseline and Candidate B as a comparison. TinyBrainBot is excluded.
 
-Read [the 1.3 data expansion plan](docs/V1.3_DATA_EXPANSION.md) before adding examples.
+## Kaggle CPU preparation commands
 
-Audit the pinned upstream dataset first (Kaggle CPU; downloads the dataset):
-
-\`\`\`bash
-python tools/audit_v13_dataset.py --revision v1.5
-\`\`\`
-
-Validate only human-reviewed supplemental JSONL:
+Clone this branch in a Kaggle notebook:
 
 ```bash
-python tools/validate_v13_supplement.py --input reviewed_supplement.jsonl
+!git clone --depth 1 --branch mimocode-guard-1.3-data-expansion https://github.com/p5i6/mimocode-guard.git
+%cd mimocode-guard
+!pip -q install "datasets>=2.18,<4"
 ```
 
-This validator does not train a model. The existing pinned trainer still consumes the original `yannelli/cli-command-risk` v1.5 dataset. Do not claim supplemental rows were trained until a loader integration and run-manifest hash prove that they were.
+Audit the pinned upstream data:
 
-Safety: commands are treated as inert text and are never executed. A Safe model prediction is never permission to execute a command. Keep deterministic policy checks and explicit approval for privileged actions.
+```bash
+!python tools/audit_v13_dataset.py --revision v1.5 --output v13_upstream_audit.json
+```
+
+After preparing `reviewed_supplement.jsonl` with the complete schema documented in `docs/V1.3_DATA_EXPANSION.md`, validate and build the train-only dataset:
+
+```bash
+!python tools/validate_v13_supplement.py --input reviewed_supplement.jsonl
+!python tools/prepare_v13_dataset.py --supplement v13_supplement_train.jsonl --revision v1.5 --output /kaggle/working/mimocode_guard_v13_dataset
+```
+
+The builder refuses family or exact command overlap with frozen validation/test, adds supplement rows only to train, saves a DatasetDict and writes a SHA-256 manifest.
+
+## Important training status
+
+The existing `mimocode_guard_train.py` launcher still downloads the pinned trainer implementation, which loads the original upstream v1.5 dataset. It does **not yet consume** `/kaggle/working/mimocode_guard_v13_dataset`. Do not run the old launcher and call that an expanded-data experiment. The next engineering task is to patch the trainer's loader to accept the local DatasetDict, record its manifest hash, and prove the train/validation/test row counts before model fitting.
+
+## Supplement schema
+
+Each JSONL record requires: `command`, `shell`, `risk_level`, `risk_categories`, `reversible`, `requires_root`, `explanation`, `safer_alternative`, `source`, `provenance`, `derived_from`, `family_id`, and `reviewed: true`.
+
+Family identifiers:
+- hybrid: `hybrid:<derived_from>`
+- generated: `generated:<seed-id>`
+- open-source canonical command: `open_source:<sha256 of normalized command>`
+
+Only human-reviewed labels are accepted. Use provenance that can be checked by another reviewer. Do not treat model-generated labels as ground truth. Do not put secrets or credentials in command examples.
+
+## Safety
+
+All commands are treated as inert text and are never executed. A Safe model prediction is never permission to execute a command. Keep deterministic policy checks and explicit approval for privileged actions.
