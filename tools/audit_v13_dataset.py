@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 """Audit CLI Command Risk v1.5 splits and report family leakage. No commands run."""
 from __future__ import annotations
-import argparse, collections, hashlib, json
+import argparse, collections, hashlib, json, re
 from datasets import load_dataset
 
 LABELS = ("safe", "low", "moderate", "high", "critical")
 
 def family_of(row):
-    # Upstream id embeds the template-family name; derived_from is the
-    # authoritative seed template for hybrid rows when populated.
-    return str(row.get("derived_from") or row.get("id") or "").strip()
+    # Hybrid rows carry the seed directly. Generated/open_source IDs use
+    # <family-stub>-<shell>-<12-char-command-hash>.
+    derived = str(row.get("derived_from") or "").strip()
+    if derived:
+        return derived
+    identifier = str(row.get("id") or "").strip()
+    return re.sub(r"-(?:bash|zsh|sh|dash|fish)-[0-9a-f]{12}$", "", identifier)
 
 def main():
     ap = argparse.ArgumentParser()
