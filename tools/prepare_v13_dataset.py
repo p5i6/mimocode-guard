@@ -8,7 +8,7 @@ split. It does not train a model or execute any command.
 from __future__ import annotations
 import argparse, collections, hashlib, json, re
 from pathlib import Path
-from datasets import Dataset, DatasetDict, load_dataset
+from datasets import Dataset, DatasetDict, concatenate_datasets, load_dataset
 
 def family(row):
     src=str(row.get("source") or "")
@@ -64,7 +64,7 @@ def main():
           "split":"train"})
     if additions:
         extra=Dataset.from_list(additions)
-        merged=Dataset.from_list(list(ds["train"])).concatenate(extra)
+        merged=concatenate_datasets([ds["train"], extra])
     else: merged=ds["train"]
     out=DatasetDict({"train":merged,"validation":ds["validation"],"test":ds["test"]})
     out.save_to_disk(a.output)
