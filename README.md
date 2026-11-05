@@ -1,44 +1,15 @@
-# MiMoCode Guard 1.2
+# MiMoCode Guard 1.3 — Data Expansion
 
-CPU-first command-risk classification training and inference, with an integrated report-integrity gate.
+This branch starts the data-expansion phase while preserving the original Candidate A baseline. Candidate B is retained for comparison; TinyBrainBot is excluded.
 
-## Run on Kaggle
+Read [the 1.3 data expansion plan](docs/V1.3_DATA_EXPANSION.md) before adding examples.
 
-1. Enable Internet in the notebook settings. No GPU is required.
-2. Download the launcher:
-
-```bash
-wget -O mimocode_guard_train.py https://raw.githubusercontent.com/p5i6/mimocode-guard/mimocode-guard-1.2-audit/mimocode_guard_train.py
-```
-
-3. Install missing Python packages and start training:
+Validate only human-reviewed supplemental JSONL:
 
 ```bash
-python mimocode_guard_train.py --install-missing-deps
+python tools/validate_v13_supplement.py --input reviewed_supplement.jsonl
 ```
 
-The launcher first audits the published reports in `artifacts/reports/`: it validates the four JSON reports, parses all five JSONL files, reconciles JSONL row counts against `error_analysis.json`, and writes `mimocode_guard_v12_audit/audit_summary.json`. A malformed report or row-count mismatch stops the run before training. If the audit passes, the launcher retrieves the pinned trainer payload, verifies its SHA-256, extracts the implementation beside the launcher, and runs it.
+This validator does not train a model. The existing pinned trainer still consumes the original `yannelli/cli-command-risk` v1.5 dataset. Do not claim supplemental rows were trained until a loader integration and run-manifest hash prove that they were.
 
-Report auditing requires Internet access. For an intentional offline reproduction only, set `MIMOCODE_SKIP_REPORT_AUDIT=1`; this bypasses the report gate and should not be used for a fresh model-selection run.
-
-Default output:
-- Kaggle: `/kaggle/working/mimocode_guard_output/`
-- Other environments: `mimocode_guard_output/` beside the script
-
-## Local inference
-
-After training Candidate A:
-
-```bash
-python mimocode_guard_train.py --predict "git status --short" --candidate A
-```
-
-To point to a different exported model bundle, pass `--bundle PATH`.
-
-## Safety
-
-This is an experimental risk classifier, not a shell sandbox or authorization system. **Never use a model's `safe` prediction to authorize execution or grant root access.** Keep deterministic policy checks, explicit approval for privileged actions, and audit logging. Commands in the training dataset are treated as text and are never executed by the trainer. Test split metrics remain report-only and must not guide model or threshold selection.
-
-## Dataset
-
-[Ryan Yannelli — CLI Command Risk](https://huggingface.co/datasets/yannelli/cli-command-risk), licensed CC BY 4.0. The trainer expects revision `v1.5` by default and uses only command text, shell name, and the risk label for model development.
+Safety: commands are treated as inert text and are never executed. A Safe model prediction is never permission to execute a command. Keep deterministic policy checks and explicit approval for privileged actions.
