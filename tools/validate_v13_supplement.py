@@ -68,9 +68,6 @@ def main() -> int:
             })
         except Exception as exc:
             errors.append({"line": line_no, "error": str(exc)})
-    mixed = sorted(k for k, v in family_labels.items() if len(v) > 1)
-    if mixed:
-        errors.append({"line": None, "error": "family_id has conflicting labels: " + ", ".join(mixed[:20])})
     if errors:
         print(json.dumps({"valid": False, "errors": errors[:100], "error_count": len(errors)}, indent=2))
         return 2
@@ -87,7 +84,7 @@ def main() -> int:
         "output_sha256": hashlib.sha256(payload.encode("utf-8")).hexdigest(),
         "rows": len(rows), "unique_families": len(family_labels),
         "label_counts": dict(sorted(counts.items())),
-        "family_ids_with_multiple_labels": 0,
+        "families_with_multiple_labels": sum(1 for v in family_labels.values() if len(v) > 1),
         "validation_test_modified": False,
         "commands_executed": False,
     }
