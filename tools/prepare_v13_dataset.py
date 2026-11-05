@@ -32,12 +32,12 @@ def main():
     if not path.is_file(): p.error("validated supplement not found: "+str(path))
     rows=[json.loads(x) for x in path.read_text(encoding="utf-8").splitlines() if x.strip()]
     ds=load_dataset(a.dataset,revision=a.revision)
-    frozen_families=set(); frozen_commands=set(); train_families=set()
+    frozen_families=set(); frozen_commands=set(); train_families=set(); train_family_labels=collections.defaultdict(set)
     for split in ("validation","test"):
         for row in ds[split]:
             frozen_families.add(family(row))
             frozen_commands.add((" ".join(str(row["command"]).split()),str(row["shell"]).lower()))
-    for row in ds["train"]: train_families.add(family(row))
+    for row in ds["train"]:\n        fam=family(row); train_families.add(fam); train_family_labels[fam].add(str(row["risk_level"]))
     for i,row in enumerate(rows,1):
         fam=row["family_id"]
         if fam in frozen_families:
