@@ -1,0 +1,75 @@
+{
+  "label_order": [
+    "safe",
+    "low",
+    "moderate",
+    "high",
+    "critical"
+  ],
+  "distributions": {
+    "train": {
+      "rows": 105207,
+      "counts": {
+        "safe": 43617,
+        "low": 9231,
+        "moderate": 9741,
+        "high": 21443,
+        "critical": 21175
+      },
+      "shares": {
+        "safe": 0.41458267985970515,
+        "low": 0.08774130998887907,
+        "moderate": 0.09258889617610995,
+        "high": 0.20381723649567043,
+        "critical": 0.20126987747963537
+      }
+    },
+    "validation": {
+      "rows": 17235,
+      "counts": {
+        "safe": 5122,
+        "low": 2060,
+        "moderate": 711,
+        "high": 2639,
+        "critical": 6703
+      },
+      "shares": {
+        "safe": 0.29718595880475773,
+        "low": 0.11952422396286626,
+        "moderate": 0.0412532637075718,
+        "high": 0.1531186539019437,
+        "critical": 0.38891789962286044
+      }
+    },
+    "test": {
+      "rows": 14055,
+      "counts": {
+        "safe": 4758,
+        "low": 1968,
+        "moderate": 1187,
+        "high": 2206,
+        "critical": 3936
+      },
+      "shares": {
+        "safe": 0.3385272145144077,
+        "low": 0.1400213447171825,
+        "moderate": 0.08445393098541444,
+        "high": 0.15695482034863037,
+        "critical": 0.280042689434365
+      }
+    }
+  },
+  "distribution_shift": {
+    "train": {
+      "vs_validation_total_variation": 0.21943093611721226,
+      "vs_validation_jensen_shannon_divergence": 0.02812103620435815,
+      "max_absolute_share_difference": 0.18764802214322507
+    },
+    "test": {
+      "vs_validation_total_variation": 0.10887521018849548,
+      "vs_validation_jensen_shannon_divergence": 0.009327606838883517,
+      "max_absolute_share_difference": 0.10887521018849544
+    }
+  },
+  "warning": "A label-mix shift can change precision/recall and invalidate thresholds calibrated on another split."
+}
