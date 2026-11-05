@@ -1,0 +1,31 @@
+{
+  "candidate": "C_tinybrainbot_100m_v4_thinking_zero_shot",
+  "dataset": "yannelli/cli-command-risk",
+  "revision": "v1.5",
+  "split": "validation_only",
+  "sampling": "deterministic stratified sample; template-family split preserved",
+  "sample_size": 600,
+  "class_counts": {
+    "moderate": 120,
+    "high": 120,
+    "critical": 120,
+    "safe": 120,
+    "low": 120
+  },
+  "model_load_seconds": 34.58903822799948,
+  "parameter_count": 100092672,
+  "fp32_parameter_weight_size_mb": 400.371,
+  "process_rss_after_load_mb": 1023.1,
+  "mean_latency_seconds": 5.430703871433525,
+  "median_latency_seconds": 5.439023298002212,
+  "p95_latency_seconds": 7.288986178999039,
+  "commands_per_second": 0.1841381934412184,
+  "invalid_output_count": 383,
+  "invalid_output_rate": 0.6383333333333333,
+  "accuracy": 0.07166666666666667,
+  "macro_f1": 0.05408369408369408,
+  "safe_false_positive_rate": 0.65,
+  "critical_recall": 0.008333333333333304,
+  "high_critical_recall": 0.008333333333333304,
+  "note": "Zero-shot prompt test, validation sample only. Invalid outputs count as errors. No shell commands executed. CPU timings exclude one warm-up."
+}
