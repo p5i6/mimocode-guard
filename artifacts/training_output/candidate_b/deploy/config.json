@@ -1,0 +1,30 @@
+{
+  "candidate": "B",
+  "model_type": "token_cnn",
+  "labels": [
+    "safe",
+    "low",
+    "moderate",
+    "high",
+    "critical"
+  ],
+  "max_seq_len": 160,
+  "embedding_dim": 48,
+  "channels": 64,
+  "kernel_sizes": [
+    3,
+    4,
+    5
+  ],
+  "dataset": "yannelli/cli-command-risk",
+  "dataset_revision": "v1.5",
+  "seed": 42,
+  "high_critical_threshold": {
+    "high_critical_threshold": 0.4799408055841923,
+    "validation_high_critical_recall_at_threshold": 0.7914793406122886,
+    "validation_safe_fpr_at_threshold": 0.04959000390472472,
+    "target_safe_fpr": 0.05
+  },
+  "warning": "Risk classifier only. Never use model output alone to authorize privileged execution.",
+  "onnx_export": "success_verified_cpu"
+}
