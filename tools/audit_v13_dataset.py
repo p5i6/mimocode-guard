@@ -7,13 +7,18 @@ from datasets import load_dataset
 LABELS = ("safe", "low", "moderate", "high", "critical")
 
 def family_of(row):
-    # Hybrid rows carry the seed directly. Generated/open_source IDs use
-    # <family-stub>-<shell>-<12-char-command-hash>.
-    derived = str(row.get("derived_from") or "").strip()
-    if derived:
-        return derived
-    identifier = str(row.get("id") or "").strip()
-    return re.sub(r"-(?:bash|zsh|sh|dash|fish)-[0-9a-f]{12}$", "", identifier)
+    source = str(row.get("source") or "").strip()
+    if source == "hybrid":
+        return "hybrid:" + str(row.get("derived_from") or "").strip()
+    if source == "generated":
+        identifier = str(row.get("id") or "").strip()
+        return "generated:" + re.sub(r"-(?:bash|zsh|sh|dash|fish)-[0-9a-f]{12}$", "", identifier)
+    if source == "open_source":
+        # The dataset defines each canonical open-source command as its own
+        # family, shared only across shell variants. Provenance is not a family.
+        command = " ".join(str(row.get("command") or "").split())
+        return "open_source:" + hashlib.sha256(command.encode("utf-8")).hexdigest()
+    return "unknown:" + str(row.get("id") or "").strip()
 
 def main():
     ap = argparse.ArgumentParser()
