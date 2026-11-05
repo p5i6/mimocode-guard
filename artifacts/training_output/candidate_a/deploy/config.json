@@ -1,0 +1,32 @@
+{
+  "candidate": "A",
+  "model_type": "word_char_structured_tfidf_sgd_plus_binary_critical_head",
+  "labels": [
+    "critical",
+    "high",
+    "low",
+    "moderate",
+    "safe"
+  ],
+  "input_format": "SHELL_<shell> <command>",
+  "high_critical_threshold": {
+    "high_critical_threshold": 0.0005081001212050434,
+    "validation_high_critical_recall_at_threshold": 0.9554699207878399,
+    "validation_safe_fpr_at_threshold": 0.04959000390472472,
+    "target_safe_fpr": 0.05
+  },
+  "critical_detector_threshold": {
+    "critical_threshold": 4.678373443312012e-06,
+    "validation_critical_recall": 0.9758317171415783,
+    "validation_safe_fpr": 0.008395158141351035,
+    "validation_noncritical_fpr": 0.19977212305355108,
+    "target_safe_fpr": 0.05,
+    "target_noncritical_fpr": 0.2
+  },
+  "critical_detector_role": "additional review signal only; never an authorization decision",
+  "dataset": "yannelli/cli-command-risk",
+  "dataset_revision": "v1.5",
+  "seed": 42,
+  "feature_version": "word_char_structured_v2",
+  "warning": "Risk classifier only. Never use model output alone to authorize privileged execution."
+}
