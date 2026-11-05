@@ -1,0 +1,42 @@
+{
+  "selection_method": "validation_only; test metrics are report-only and not used for model selection",
+  "selected_candidate": "A",
+  "deployment_status": "research_only_safety_targets_not_met",
+  "deployment_ready": false,
+  "selected_validation_summary": {
+    "package_within_limit": true,
+    "onnx_export_ok": true,
+    "critical_detector_present": true,
+    "validation_targets_met": false,
+    "validation_critical_recall": 0.9758317171415783,
+    "validation_critical_safe_fpr": 0.008395158141351035,
+    "validation_critical_noncritical_fpr": 0.19977212305355108,
+    "validation_high_critical_recall_thresholded": 0.9554699207878399,
+    "validation_macro_f1": 0.5844724308640306
+  },
+  "candidates": {
+    "A": {
+      "package_within_limit": true,
+      "onnx_export_ok": true,
+      "critical_detector_present": true,
+      "validation_targets_met": false,
+      "validation_critical_recall": 0.9758317171415783,
+      "validation_critical_safe_fpr": 0.008395158141351035,
+      "validation_critical_noncritical_fpr": 0.19977212305355108,
+      "validation_high_critical_recall_thresholded": 0.9554699207878399,
+      "validation_macro_f1": 0.5844724308640306
+    },
+    "B": {
+      "package_within_limit": true,
+      "onnx_export_ok": true,
+      "critical_detector_present": false,
+      "validation_targets_met": false,
+      "validation_critical_recall": 0.5355810830971207,
+      "validation_critical_safe_fpr": 0.12417024599765716,
+      "validation_critical_noncritical_fpr": null,
+      "validation_high_critical_recall_thresholded": 0.7914793406122886,
+      "validation_macro_f1": 0.5392002280681636
+    }
+  },
+  "deployment_warning": "A selected model is a risk signal, not an authorization system. Deterministic policy rules and human approval remain mandatory for privileged commands."
+}
