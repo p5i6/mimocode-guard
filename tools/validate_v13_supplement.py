@@ -12,7 +12,7 @@ from pathlib import Path
 LABELS = {"safe", "low", "moderate", "high", "critical"}
 REQUIRED = {"command", "shell", "label", "family_id", "source", "reviewed"}
 SECRET_PATTERNS = [
-    re.compile(r"(?i)(api[_-]?key|access[_-]?token|password|passwd|secret)\s*[:=]\s*\\S+"),
+    re.compile(r"(?i)(api[_-]?key|access[_-]?token|password|passwd|secret)\s*[:=]\s*\S+"),
     re.compile(r"(?i)-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
 ]
 
