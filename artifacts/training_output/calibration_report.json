@@ -1,0 +1,365 @@
+{
+  "threshold_source": "validation only",
+  "critical_threshold": 4.678373443312012e-06,
+  "critical_threshold_constraints": {
+    "critical_threshold": 4.678373443312012e-06,
+    "validation_critical_recall": 0.9758317171415783,
+    "validation_safe_fpr": 0.008395158141351035,
+    "validation_noncritical_fpr": 0.19977212305355108,
+    "target_safe_fpr": 0.05,
+    "target_noncritical_fpr": 0.2
+  },
+  "by_split": {
+    "validation": {
+      "critical_detector": {
+        "brier_score": 0.13856149538412094,
+        "expected_calibration_error": 0.14787441669310367,
+        "bins": [
+          {
+            "bin": 0,
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 11877,
+            "mean_probability": 0.003581508554512421,
+            "observed_rate": 0.14330218068535824
+          },
+          {
+            "bin": 1,
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 343,
+            "mean_probability": 0.14451569603327064,
+            "observed_rate": 0.8221574344023324
+          },
+          {
+            "bin": 2,
+            "lower": 0.2,
+            "upper": 0.30000000000000004,
+            "count": 327,
+            "mean_probability": 0.2504955554774048,
+            "observed_rate": 0.8440366972477065
+          },
+          {
+            "bin": 3,
+            "lower": 0.30000000000000004,
+            "upper": 0.4,
+            "count": 228,
+            "mean_probability": 0.3488931204927595,
+            "observed_rate": 0.8728070175438597
+          },
+          {
+            "bin": 4,
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 205,
+            "mean_probability": 0.4500973486318821,
+            "observed_rate": 0.8536585365853658
+          },
+          {
+            "bin": 5,
+            "lower": 0.5,
+            "upper": 0.6000000000000001,
+            "count": 198,
+            "mean_probability": 0.5511905626215116,
+            "observed_rate": 0.8939393939393939
+          },
+          {
+            "bin": 6,
+            "lower": 0.6000000000000001,
+            "upper": 0.7000000000000001,
+            "count": 250,
+            "mean_probability": 0.6541321742534637,
+            "observed_rate": 0.924
+          },
+          {
+            "bin": 7,
+            "lower": 0.7000000000000001,
+            "upper": 0.8,
+            "count": 436,
+            "mean_probability": 0.7519898500737794,
+            "observed_rate": 0.9357798165137615
+          },
+          {
+            "bin": 8,
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 579,
+            "mean_probability": 0.8524726412045112,
+            "observed_rate": 0.918825561312608
+          },
+          {
+            "bin": 9,
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 2792,
+            "mean_probability": 0.9769232363832373,
+            "observed_rate": 0.9745702005730659
+          }
+        ]
+      },
+      "base_multiclass_confidence": {
+        "brier_score": 0.2838293440405466,
+        "expected_calibration_error": 0.26905928139656154,
+        "bins": [
+          {
+            "bin": 0,
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 0,
+            "mean_probability": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 1,
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 0,
+            "mean_probability": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 2,
+            "lower": 0.2,
+            "upper": 0.30000000000000004,
+            "count": 0,
+            "mean_probability": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 3,
+            "lower": 0.30000000000000004,
+            "upper": 0.4,
+            "count": 5,
+            "mean_probability": 0.373637980222702,
+            "observed_rate": 0.2
+          },
+          {
+            "bin": 4,
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 40,
+            "mean_probability": 0.4640521839261055,
+            "observed_rate": 0.275
+          },
+          {
+            "bin": 5,
+            "lower": 0.5,
+            "upper": 0.6000000000000001,
+            "count": 938,
+            "mean_probability": 0.5364515438898286,
+            "observed_rate": 0.5650319829424307
+          },
+          {
+            "bin": 6,
+            "lower": 0.6000000000000001,
+            "upper": 0.7000000000000001,
+            "count": 500,
+            "mean_probability": 0.6462647551298142,
+            "observed_rate": 0.392
+          },
+          {
+            "bin": 7,
+            "lower": 0.7000000000000001,
+            "upper": 0.8,
+            "count": 495,
+            "mean_probability": 0.7537371580046837,
+            "observed_rate": 0.38585858585858585
+          },
+          {
+            "bin": 8,
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 643,
+            "mean_probability": 0.8537682579427633,
+            "observed_rate": 0.4603421461897356
+          },
+          {
+            "bin": 9,
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 14614,
+            "mean_probability": 0.9938957660562349,
+            "observed_rate": 0.7174627069932941
+          }
+        ],
+        "meaning": "Maximum predicted-class confidence versus multiclass correctness."
+      }
+    },
+    "test": {
+      "critical_detector": {
+        "brier_score": 0.12694421589959132,
+        "expected_calibration_error": 0.11873325301672079,
+        "bins": [
+          {
+            "bin": 0,
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 9767,
+            "mean_probability": 0.0022480106670371633,
+            "observed_rate": 0.08027029794204976
+          },
+          {
+            "bin": 1,
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 207,
+            "mean_probability": 0.1465350141847767,
+            "observed_rate": 0.7536231884057971
+          },
+          {
+            "bin": 2,
+            "lower": 0.2,
+            "upper": 0.30000000000000004,
+            "count": 133,
+            "mean_probability": 0.24975649015347762,
+            "observed_rate": 0.7669172932330827
+          },
+          {
+            "bin": 3,
+            "lower": 0.30000000000000004,
+            "upper": 0.4,
+            "count": 116,
+            "mean_probability": 0.34824872890423086,
+            "observed_rate": 0.5775862068965517
+          },
+          {
+            "bin": 4,
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 110,
+            "mean_probability": 0.45009055516936564,
+            "observed_rate": 0.5818181818181818
+          },
+          {
+            "bin": 5,
+            "lower": 0.5,
+            "upper": 0.6000000000000001,
+            "count": 151,
+            "mean_probability": 0.5532282065871535,
+            "observed_rate": 0.5761589403973509
+          },
+          {
+            "bin": 6,
+            "lower": 0.6000000000000001,
+            "upper": 0.7000000000000001,
+            "count": 182,
+            "mean_probability": 0.6494691981064095,
+            "observed_rate": 0.4725274725274725
+          },
+          {
+            "bin": 7,
+            "lower": 0.7000000000000001,
+            "upper": 0.8,
+            "count": 196,
+            "mean_probability": 0.7526256147087836,
+            "observed_rate": 0.576530612244898
+          },
+          {
+            "bin": 8,
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 363,
+            "mean_probability": 0.8566645999585302,
+            "observed_rate": 0.5537190082644629
+          },
+          {
+            "bin": 9,
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 2830,
+            "mean_probability": 0.97775956217476,
+            "observed_rate": 0.8042402826855124
+          }
+        ]
+      },
+      "base_multiclass_confidence": {
+        "brier_score": 0.3069585485046109,
+        "expected_calibration_error": 0.3080457276951923,
+        "bins": [
+          {
+            "bin": 0,
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 0,
+            "mean_probability": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 1,
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 0,
+            "mean_probability": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 2,
+            "lower": 0.2,
+            "upper": 0.30000000000000004,
+            "count": 0,
+            "mean_probability": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 3,
+            "lower": 0.30000000000000004,
+            "upper": 0.4,
+            "count": 2,
+            "mean_probability": 0.36741510033607483,
+            "observed_rate": 0.0
+          },
+          {
+            "bin": 4,
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 8,
+            "mean_probability": 0.4492618963122368,
+            "observed_rate": 0.25
+          },
+          {
+            "bin": 5,
+            "lower": 0.5,
+            "upper": 0.6000000000000001,
+            "count": 623,
+            "mean_probability": 0.5344797383342088,
+            "observed_rate": 0.26324237560192615
+          },
+          {
+            "bin": 6,
+            "lower": 0.6000000000000001,
+            "upper": 0.7000000000000001,
+            "count": 393,
+            "mean_probability": 0.650946849781745,
+            "observed_rate": 0.27735368956743
+          },
+          {
+            "bin": 7,
+            "lower": 0.7000000000000001,
+            "upper": 0.8,
+            "count": 411,
+            "mean_probability": 0.7528461850182564,
+            "observed_rate": 0.35279805352798055
+          },
+          {
+            "bin": 8,
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 597,
+            "mean_probability": 0.8520269894120681,
+            "observed_rate": 0.440536013400335
+          },
+          {
+            "bin": 9,
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 12021,
+            "mean_probability": 0.9940413354726572,
+            "observed_rate": 0.6944513767573414
+          }
+        ],
+        "meaning": "Maximum predicted-class confidence versus multiclass correctness."
+      }
+    }
+  },
+  "warning": "Calibration metrics describe this dataset split; they do not guarantee safe decisions on new commands."
+}
